@@ -54,8 +54,9 @@ export default function UserSignUpForm() {
         callbackUrl: callbackUrl
       });
 
-      if (!res?.error) {
-        router.push('/dashboard')
+      if (res?.ok) {
+        console.log("OK");
+        return;
       } else {
         setError("invalid email or password");
       }

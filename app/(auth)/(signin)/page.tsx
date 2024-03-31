@@ -1,14 +1,21 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import UserSignInForm from "@/components/forms/user-signin-form";
 import UserSignUpForm from "@/components/forms/user-signup-form";
-
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 export default function AuthenticationPage() {
+  const router = useRouter();
   const [isSignIn, setIsSignIn] = useState(true);
-
+  const { data: session } = useSession();
   const handleSignUp = () => {
     setIsSignIn(true);
   };
+  useEffect(()=> {
+    if(session?.user){
+      router.push('/dashboard');
+    }
+  }, [session?.user])
   
   return (
     <div className="relative h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
@@ -31,8 +38,5 @@ export default function AuthenticationPage() {
       </div>
     </div>
   );
-}
-function setIsSignIn(arg0: boolean) {
-  throw new Error("Function not implemented.");
 }
 
