@@ -11,13 +11,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-
-// Define the type for the onSignUp function
-type SignInFunction = () => void;
 
 const formSchema = z.object({
   email: z.string().email({ message: "Enter a valid email address" }),
@@ -26,12 +23,8 @@ const formSchema = z.object({
 
 type UserFormValue = z.infer<typeof formSchema>;
 
-// Add type annotation for onSignUp prop
-interface UserSignInFormProps {
-  onSignIn: SignInFunction;
-}
-
-export default function UserSignUpForm({onSignIn}: UserSignInFormProps) {
+export default function UserSignUpForm() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
   const [loading, setLoading] = useState(false);
@@ -59,7 +52,7 @@ export default function UserSignUpForm({onSignIn}: UserSignInFormProps) {
       });
 
       if (!res?.error) {
-        onSignIn();
+        router.push('/dashboard')
       } else {
         setError("invalid email or password");
       }

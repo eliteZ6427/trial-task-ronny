@@ -2,16 +2,9 @@
 import { useState } from "react";
 import UserSignInForm from "@/components/forms/user-signin-form";
 import UserSignUpForm from "@/components/forms/user-signup-form";
-import { useRouter } from "next/navigation";
-
 
 export default function AuthenticationPage() {
   const [isSignIn, setIsSignIn] = useState(true);
-  const router = useRouter();
-
-  const handleSignIn = () => {
-    router.push('/dashboard');
-  };
 
   const handleSignUp = () => {
     setIsSignIn(true);
@@ -29,7 +22,7 @@ export default function AuthenticationPage() {
               {isSignIn ? 'Sign In' : 'Sign Up'}
             </h1>
           </div>
-          {isSignIn ? <UserSignInForm onSignIn={handleSignIn} /> : <UserSignUpForm onSignUp={handleSignUp} />}
+          {isSignIn ? <UserSignInForm /> : <UserSignUpForm onSignUp={handleSignUp} />}
           <p>
             {isSignIn ? "Don't have an account? " : "Already have an account? "}
             <button onClick={() => setIsSignIn(!isSignIn)}>{isSignIn ? 'Sign Up' : 'Sign In'}</button>
