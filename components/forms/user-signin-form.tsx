@@ -59,8 +59,6 @@ export default function UserSignUpForm({onSignIn}: UserSignInFormProps) {
         callbackUrl:callbackUrl
       });
 
-  
-
       if (!res?.error) {
         onSignIn();
       } else {

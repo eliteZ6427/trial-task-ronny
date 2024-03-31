@@ -10,7 +10,6 @@ export default function AuthenticationPage() {
   const router = useRouter();
 
   const handleSignIn = () => {
-    // Handle sign-in logic here  
     router.push('/dashboard');
   };
 
