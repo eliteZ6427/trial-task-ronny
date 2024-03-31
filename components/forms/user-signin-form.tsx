@@ -36,7 +36,6 @@ export default function UserSignUpForm() {
     email: "",
     password: "", // Initialize password field
     confirmPassword: "", // Initialize confirmPassword field
-    callbackUrl: callbackUrl
   };
   const form = useForm<UserFormValue>({
     resolver: zodResolver(formSchema),
@@ -51,12 +50,10 @@ export default function UserSignUpForm() {
         redirect: false,
         email: data.email,
         password: data.password,
-        callbackUrl: callbackUrl
       });
 
-      if (res?.ok) {
-        console.log("OK");
-        return;
+      if (!res?.error) {
+        router.push('/dashboard')
       } else {
         setError("invalid email or password");
       }
