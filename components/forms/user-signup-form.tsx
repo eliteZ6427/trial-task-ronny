@@ -36,7 +36,7 @@ export default function UserSignUpForm({onSignUp}: UserSignUpFormProps) {
   const callbackUrl = searchParams.get("callbackUrl");
   const [loading, setLoading] = useState(false);
   const defaultValues = {
-    email: "demo@gmail.com",
+    email: "",
     password: "", // Initialize password field
     confirmPassword: "", // Initialize confirmPassword field
   };
