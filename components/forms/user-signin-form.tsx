@@ -56,7 +56,6 @@ export default function UserSignUpForm({onSignIn}: UserSignInFormProps) {
         redirect: false,
         email: data.email,
         password: data.password,
-        callbackUrl:callbackUrl
       });
 
       if (!res?.error) {
