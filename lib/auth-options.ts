@@ -46,6 +46,7 @@ export const authOptions: NextAuthOptions = {
           where: {
             email: credentials.email,
           },
+          select: {id: true, password: true, email: true}
         });
 
         if (!user || !(await compare(credentials.password, user.password!))) {
