@@ -16,6 +16,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
+
 const formSchema = z.object({
   email: z.string().email({ message: "Enter a valid email address" }),
   password: z.string().min(6, "Password must be at least 6 characters"),
@@ -31,10 +32,12 @@ export default function UserSignUpForm() {
 
   const [error, setError] = useState("");
 
+  console.log(callbackUrl);
   const defaultValues = {
     email: "",
     password: "", // Initialize password field
     confirmPassword: "", // Initialize confirmPassword field
+    callbackUrl: callbackUrl
   };
   const form = useForm<UserFormValue>({
     resolver: zodResolver(formSchema),
