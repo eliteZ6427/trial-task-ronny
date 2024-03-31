@@ -45,7 +45,6 @@ export default function UserSignUpForm() {
   const onSubmit = async (data: UserFormValue) => {
     try {
       setLoading(true);
-      // Implement sign-up logic here
       const res = await signIn("signin", {
         redirect: false,
         email: data.email,
