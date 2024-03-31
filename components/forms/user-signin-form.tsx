@@ -32,7 +32,6 @@ export default function UserSignUpForm() {
 
   const [error, setError] = useState("");
 
-  console.log(callbackUrl);
   const defaultValues = {
     email: "",
     password: "", // Initialize password field
@@ -52,6 +51,7 @@ export default function UserSignUpForm() {
         redirect: false,
         email: data.email,
         password: data.password,
+        callbackUrl: callbackUrl
       });
 
       if (!res?.error) {
