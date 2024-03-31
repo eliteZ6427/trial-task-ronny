@@ -13,7 +13,8 @@ export async function POST(req: Request) {
     const exUser = await prisma.user.findUnique({
       where: {
         email: email.toLocaleLowerCase()
-      }
+      },
+      select: {email: true, id: true}
     });
     
     if(exUser) {
@@ -25,18 +26,15 @@ export async function POST(req: Request) {
         { status: 500 }
       );  
     }
-    const user = await prisma.user.create({
+    await prisma.user.create({
       data: {
         email: email.toLowerCase(),
         password: hashed_password,
       },
+      select: {id: true}
     });
 
-    return NextResponse.json({
-      user: {
-        email: user.email,
-      },
-    });
+    return NextResponse.json({status: 200});
   } catch (error: any) {
     return new NextResponse(
       JSON.stringify({
